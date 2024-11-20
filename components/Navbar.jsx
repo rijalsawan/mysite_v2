@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import DarkModeSwitch from "@/components/DarkModeSwitch";
+import DarkmodeSwitch from "@/components/DarkmodeSwitch";
 
 const Navbar = () => {
   return (
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <Link href="/about">About</Link>
                 <Link href="/projects">Projects</Link>
                 <Link href="/contact">Contact</Link>
-                <span><DarkModeSwitch/></span>
+                <span><DarkmodeSwitch/></span>
             </div>
               </SheetHeader>
             </SheetContent>
