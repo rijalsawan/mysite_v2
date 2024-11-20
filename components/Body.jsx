@@ -452,7 +452,7 @@ const Body = () => {
                         Dall-e-3 API
                       </span>
                       <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Open AI's Text-to-speech API
+                        Open AI&apos;s Text-to-speech API
                       </span>
                     </div>
                     <div className="flex justify-center gap-4">
