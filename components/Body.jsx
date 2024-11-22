@@ -62,8 +62,7 @@ const Body = () => {
             </Link>
             <a
             onClick={handleDownload}
-              href="/resume.pdf"
-              download={"/resume.pdf"}
+              
               className="flex items-center justify-center w-10 h-10 p-1 rounded-full shadow-xl"
             >
               <svg
