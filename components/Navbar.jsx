@@ -53,9 +53,9 @@ const Navbar = () => {
               <SheetHeader>
               <div className="flex flex-col space-y-6 lg:hidden my-auto">
                 <h1 className="text-2xl font-bold">Sawan.dev</h1>
-                <Link href="/about">About</Link>
-                <Link href="/projects">Projects</Link>
-                <Link href="/contact">Contact</Link>
+                <Link href="#about">About</Link>
+                <Link href="#projects">Projects</Link>
+                <Link href="#contact">Contact</Link>
                 <span><DarkmodeSwitch/></span>
             </div>
               </SheetHeader>
