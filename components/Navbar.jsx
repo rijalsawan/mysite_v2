@@ -64,8 +64,8 @@ const Navbar = () => {
         </div>
         <div className="w-1/2 flex justify-end space-x-6 max-sm:hidden">
           <Link className="font-bold  hover:scale-125 transition-transform duration-300 my-auto" href="#about">About</Link>
-          <Link className="font-bold  hover:scale-125 transition-transform duration-300  my-auto" href="/projects">Projects</Link>
-          <Link className="font-bold  hover:scale-125 transition-transform duration-300  my-auto" href="/contact">Contact</Link>
+          <Link className="font-bold  hover:scale-125 transition-transform duration-300  my-auto" href="#projects">Projects</Link>
+          <Link className="font-bold  hover:scale-125 transition-transform duration-300  my-auto" href="#contact">Contact</Link>
           <DarkmodeSwitch/>
         </div>
         </section>

@@ -6,9 +6,22 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 
 const Body = () => {
+  const handleDownload = () => {
+    const resumeUrl = '/sd.pdf';
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = '/sd.pdf'; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+  };
+
   return (
+    
     <>
       <section className="my-8 lg:flex lg:mx-[8rem]">
         <div className="hero-img flex lg:h-96 lg:w-96 h-72 w-72"></div>
@@ -28,6 +41,7 @@ const Body = () => {
             Winnipeg, Manitoba.
           </p>
           <div className="flex justify-center space-x-4">
+            <Link target="_blank" href={"https://www.linkedin.com/in/sawan-rijal-ab650321b"}><div>
             <Image
               src="/linkedin.png"
               className="w-10 h-10 shadow-xl rounded-full"
@@ -35,6 +49,8 @@ const Body = () => {
               width={40}
               height={40}
             />
+            </div></Link>
+            <Link target="_blank" href={"https://github.com/rijalsawan"}><div>
             <Image
               src="/github.png"
               className="w-10 h-10 p-1 rounded-full shadow-xl"
@@ -42,9 +58,12 @@ const Body = () => {
               width={50}
               height={40}
             />
+            </div>
+            </Link>
             <a
-              
-              download="sd.pdf"
+            onClick={handleDownload}
+              href="/resume.pdf"
+              download={"/resume.pdf"}
               className="flex items-center justify-center w-10 h-10 p-1 rounded-full shadow-xl"
             >
               <svg
@@ -424,7 +443,7 @@ const Body = () => {
             My Recent Projects
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:w-[60rem] mx-auto cursor-pointer">
+          <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:w-[60rem] mx-auto cursor-pointer">
             <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
               <div className="relative">
                 <Image
@@ -457,17 +476,13 @@ const Body = () => {
                     </div>
                     <div className="flex justify-center gap-4">
                       <a
-                        href="#"
+                      target="_blank"
+                        href="https://podcaster-kappa.vercel.app"
                         className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
                       >
                         Live Demo
                       </a>
-                      <a
-                        href="#"
-                        className="bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white/10 transition-colors"
-                      >
-                        GitHub
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -496,17 +511,13 @@ const Body = () => {
                     </div>
                     <div className="flex justify-center gap-4">
                       <a
-                        href="#"
+                      target="_blank"
+                        href="https://yum-momo-production-main-2.vercel.app"
                         className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
                       >
                         Live Demo
                       </a>
-                      <a
-                        href="#"
-                        className="bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white/10 transition-colors"
-                      >
-                        GitHub
-                      </a>
+                      
                     </div>
                   </div>
                 </div>
@@ -543,17 +554,50 @@ const Body = () => {
                     </div>
                     <div className="flex justify-center gap-4">
                       <a
-                        href="#"
+                        href="https://simple-blog-silk.vercel.app/"
+                        
                         className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
                       >
                         Live Demo
                       </a>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
+              <div className="relative">
+                <Image
+                  src="/transit.svg"
+                  width={400}
+                  height={400}
+                  alt="Project 1"
+                  className="object-contain w-full max-sm:h-96"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-2xl font-bold mb-2">City Hopper</h3>
+                    <p className="mb-4">
+                      A simple local bus schedule application
+                    </p>
+                    <div className="flex justify-center flex-wrap gap-4 mb-4">
+                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
+                        Nextjs
+                      </span>
+                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
+                        Winnipeg transit API
+                      </span>
+                    </div>
+                    <div className="flex justify-center gap-4">
                       <a
-                        href="#"
-                        className="bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white/10 transition-colors"
+                        href="https://simple-blog-silk.vercel.app/"
+                        
+                        className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
                       >
-                        GitHub
+                        Live Demo
                       </a>
+                      
                     </div>
                   </div>
                 </div>
