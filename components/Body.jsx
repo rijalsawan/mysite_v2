@@ -10,10 +10,10 @@ import Link from "next/link";
 
 const Body = () => {
   const handleDownload = () => {
-    const resumeUrl = '/sd.pdf';
+    const resumeUrl = '/resume.pdf';
     const link = document.createElement('a');
     link.href = resumeUrl;
-    link.download = '/sd.pdf'; 
+    link.download = '/resume.pdf'; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -41,7 +41,7 @@ const Body = () => {
             Winnipeg, Manitoba.
           </p>
           <div className="flex justify-center space-x-4">
-            <Link target="_blank" href={"https://www.linkedin.com/in/sawan-rijal-ab650321b"}><div>
+            <Link target="_blank" href={"https://www.linkedin.com/in/sawan-rijal"}><div>
             <Image
               src="/linkedin.png"
               className="w-10 h-10 shadow-xl rounded-full"
@@ -63,7 +63,7 @@ const Body = () => {
             <a
             onClick={handleDownload}
               
-              className="flex items-center justify-center w-10 h-10 p-1 rounded-full shadow-xl"
+              className="flex cursor-pointer items-center justify-center w-10 h-10 p-1 rounded-full shadow-xl"
             >
               <svg
                 className="shadow-xl rounded-full"
@@ -376,6 +376,17 @@ const Body = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
+                {/* import svg */}
+                <img src="/ts.svg" alt="" />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>TYPESCRIPT</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
@@ -407,7 +418,7 @@ const Body = () => {
                 </svg>
               </TooltipTrigger>
               <TooltipContent>
-                <p>NODEJS</p>
+                <p>TYPESCRIPT</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -436,175 +447,186 @@ const Body = () => {
           </div>
         </div>
       </section>
-      <section className="projects py-16 max-sm:mx-7">
-        <div className="container lg:mx-[8rem] px-4">
-          <h2 className="text-2xl font-bold text-center max-sm:text-2xl mb-12">
-            My Recent Projects
-          </h2>
-
-          <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:w-[60rem] mx-auto cursor-pointer">
-            <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
-              <div className="relative">
-                <Image
-                  src="/podcast.svg"
-                  width={400}
-                  height={400}
-                  alt="Project 1"
-                  className="object-contain w-full max-sm:h-96"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-2xl font-bold mb-2">Podcaster</h3>
-                    <p className="mb-4">Create podcasts with AI</p>
-                    <div className="flex justify-center flex-wrap gap-4 mb-4 lg:w-[18rem]">
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Nextjs
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Convex backend
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Clerk Authentication
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Dall-e-3 API
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Open AI&apos;s Text-to-speech API
-                      </span>
+      
+            <section className="projects py-20 max-sm:mx-7">
+              <div className="container lg:mx-[8rem] px-4">
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-light text-gray-800 mb-4">
+                    Selected Work
+                  </h2>
+                  <div className="w-16 h-0.5 bg-gray-800 mx-auto"></div>
+                </div>
+      
+                <div id="projects" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:w-[70rem] mx-auto">
+                  
+                  {/* Podcaster Project */}
+                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="/podcast.svg"
+                        width={500}
+                        height={300}
+                        alt="Podcaster Project"
+                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                          AI Powered
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex justify-center gap-4">
+                    <div className="p-8">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">Podcaster</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                        AI-powered podcast creation platform with advanced text-to-speech capabilities and intelligent content generation.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {['Next.js', 'Convex', 'Clerk', 'OpenAI'].map((tech) => (
+                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                       <a
-                      target="_blank"
                         href="https://podcaster-kappa.vercel.app"
-                        className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
+                        target="_blank"
+                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
                       >
-                        Live Demo
+                        View Project
+                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </a>
-                      
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
-              <div className="relative">
-                <Image
-                  src="/ecommerce.svg"
-                  width={400}
-                  height={400}
-                  alt="Project 1"
-                  className="object-contain w-full max-sm:h-96"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-2xl font-bold mb-2">YumMomo</h3>
-                    <p className="mb-4">An ecommerce website for a business</p>
-                    <div className="flex justify-center flex-wrap gap-4 mb-4">
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Nextjs
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Mongodb
-                      </span>
+      
+                  {/* YumMomo Project */}
+                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="/ecommerce.svg"
+                        width={500}
+                        height={300}
+                        alt="YumMomo Project"
+                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                          E-commerce
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex justify-center gap-4">
+                    <div className="p-8">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">Ecom</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                        Modern e-commerce platform with clean design, seamless shopping experience, order management and payment.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {['Next.js', 'PostGreSQL', 'Stripe', 'clerk authentication'].map((tech) => (
+                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                       <a
-                      target="_blank"
-                        href="https://yum-momo-production-main-2.vercel.app"
-                        className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
+                        href="https://ecom-eta-mauve.vercel.app"
+                        target="_blank"
+                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
                       >
-                        Live Demo
+                        View Project
+                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </a>
-                      
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
-              <div className="relative">
-                <Image
-                  src="/blog.svg"
-                  width={400}
-                  height={400}
-                  alt="Project 1"
-                  className="object-contain w-full max-sm:h-96"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-2xl font-bold mb-2">SimpleBlog</h3>
-                    <p className="mb-4">
-                      A simple blog writing web application
-                    </p>
-                    <div className="flex justify-center flex-wrap gap-4 mb-4">
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Nextjs
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Mongodb
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        TinyMCE Text Editor
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Web search API
-                      </span>
+      
+                  {/* SimpleBlog Project */}
+                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="/blog.svg"
+                        width={500}
+                        height={300}
+                        alt="SimpleBlog Project"
+                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                          Content Platform
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex justify-center gap-4">
+                    <div className="p-8">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">SimpleBlog</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                        Clean and intuitive blogging platform with rich text editing and content management capabilities.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {['Next.js', 'MongoDB', 'TinyMCE'].map((tech) => (
+                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                       <a
                         href="https://simple-blog-silk.vercel.app/"
-                        
-                        className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
+                        target="_blank"
+                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
                       >
-                        Live Demo
+                        View Project
+                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </a>
-                      
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="group border relative overflow-hidden rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-2">
-              <div className="relative">
-                <Image
-                  src="/transit.svg"
-                  width={400}
-                  height={400}
-                  alt="Project 1"
-                  className="object-contain w-full max-sm:h-96"
-                />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-2xl font-bold mb-2">City Hopper</h3>
-                    <p className="mb-4">
-                      A simple local bus schedule application
-                    </p>
-                    <div className="flex justify-center flex-wrap gap-4 mb-4">
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Nextjs
-                      </span>
-                      <span className="px-3 py-1 bg-gray-800 rounded-full text-sm">
-                        Winnipeg transit API
-                      </span>
+      
+                  {/* City Hopper Project */}
+                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src="/transit.svg"
+                        width={500}
+                        height={300}
+                        alt="City Hopper Project"
+                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                          Transit App
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex justify-center gap-4">
+                    <div className="p-8">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">City Hopper</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                        Real-time bus schedule application providing accurate transit information for local commuters.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {['Next.js', 'Transit API', 'Real-time'].map((tech) => (
+                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                       <a
                         href="https://bus-schedule-navy.vercel.app/"
-                        
-                        className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300 ease-in-out"
+                        target="_blank"
+                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
                       >
-                        Live Demo
+                        View Project
+                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </a>
-                      
                     </div>
                   </div>
+      
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
+     
 
       <section id="contact" className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
