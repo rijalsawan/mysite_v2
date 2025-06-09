@@ -582,46 +582,8 @@ const Body = () => {
                     </div>
                   </div>
       
-                  {/* City Hopper Project */}
-                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src="/transit.svg"
-                        width={500}
-                        height={300}
-                        alt="City Hopper Project"
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-                          Transit App
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3">City Hopper</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        Real-time bus schedule application providing accurate transit information for local commuters.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {['Next.js', 'Transit API', 'Real-time'].map((tech) => (
-                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href="https://bus-schedule-navy.vercel.app/"
-                        target="_blank"
-                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
-                      >
-                        View Project
-                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+                  
+        
       
                 </div>
               </div>
