@@ -17,11 +17,51 @@ const Body = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
   };
 
-  return (
+  const projects = [
+    {
+      id: 2,
+      title: "Ecom",
+      description: "Modern e-commerce platform with clean design, seamless shopping experience, order management and payment.",
+      image: "/ecommerce.svg",
+      technologies: ['Next.js', 'PostGreSQL', 'Stripe', 'clerk authentication'],
+      category: "E-commerce",
+      liveUrl: "https://ecom-eta-mauve.vercel.app"
+    },
     
+    {
+      id: 4,
+      title: "LensBook",
+      description: "A social media platform for sharing photos and connecting with friends.",
+      image: "/lensbook.jpg",
+      technologies: ['Next.js', 'PostGreSQL', 'React hooks', 'Cloudinary', 'clerk'],
+      category: "Social Media",
+      liveUrl: "https://photography-ci2a.vercel.app/"
+    },
+    {
+      id: 3,
+      title: "SimpleBlog",
+      description: "Clean and intuitive blogging platform with rich text editing and content management capabilities.",
+      image: "/blog.svg",
+      technologies: ['Next.js', 'MongoDB', 'TinyMCE'],
+      category: "Content Platform",
+      liveUrl: "https://simple-blog-silk.vercel.app/"
+    },
+    {
+      id: 1,
+      title: "Podcaster",
+      description: "AI-powered podcast creation platform with advanced text-to-speech capabilities and intelligent content generation.",
+      image: "/podcast.svg",
+      technologies: ['Next.js', 'Convex', 'Clerk', 'OpenAI'],
+      category: "AI Powered",
+      liveUrl: "https://podcaster-kappa.vercel.app"
+    },
+    
+    
+  ];
+
+  return (
     <>
       <section className="my-8 lg:flex lg:mx-[8rem]">
         <div className="hero-img flex lg:h-96 lg:w-96 h-72 w-72"></div>
@@ -85,7 +125,7 @@ const Body = () => {
                 <circle cx="37.5" cy="43.447" r="5.5" fill="#fff"></circle>
                 <circle cx="37.5" cy="43.447" r="2.5" fill="#4a254b"></circle>
                 <circle cx="62.5" cy="43.447" r="5.5" fill="#fff"></circle>
-                <circle cx="62.5" cy="43.447" r="2.5" fill="#4a254</div>b"></circle>
+                <circle cx="62.5" cy="43.447" r="2.5" fill="#4a254b"></circle>
                 <path
                   fill="#6b96d6"
                   d="M68.634,31.425l10.075,0.006c-0.407-1.067-1.03-2.049-1.851-2.872c-4.582-4.596-9.135-9.277-13.596-13.935 c-0.9-0.94-2.002-1.644-3.208-2.066l0.022,10.324C60.087,27.601,63.914,31.422,68.634,31.425z"
@@ -107,6 +147,7 @@ const Body = () => {
           </div>
         </div>
       </section>
+
       <section className="">
         <div>
         <h1 className="text-center text-2xl font-bold">My Tech Stack</h1>
@@ -425,6 +466,7 @@ const Body = () => {
         </div>
         </div>
       </section>
+
       <section className="mt-[5rem]" id="about">
         <div className="lg:flex lg:mx-[128px]">
           <div className="lg:w-1/2">
@@ -448,147 +490,60 @@ const Body = () => {
         </div>
       </section>
       
-            <section className="projects py-20 max-sm:mx-7">
-              <div className="container lg:mx-[8rem] px-4">
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-light text-gray-800 mb-4">
-                    Selected Work
-                  </h2>
-                  <div className="w-16 h-0.5 bg-gray-800 mx-auto"></div>
+      <section className="projects py-20 max-sm:mx-7">
+        <div className="container lg:mx-[8rem] px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-light text-gray-800 mb-4">
+              Selected Work
+            </h2>
+            <div className="w-16 h-0.5 bg-gray-800 mx-auto"></div>
+          </div>
+
+          <div id="projects" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:w-[70rem] mx-auto">
+            {projects.map((project) => (
+              <div key={project.id} className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={project.image}
+                    width={500}
+                    height={300}
+                    alt={`${project.title} Project`}
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
+                      {project.category}
+                    </span>
+                  </div>
                 </div>
-      
-                <div id="projects" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:w-[70rem] mx-auto">
-                  
-                  {/* Podcaster Project */}
-                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src="/podcast.svg"
-                        width={500}
-                        height={300}
-                        alt="Podcaster Project"
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-                          AI Powered
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3">Podcaster</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        AI-powered podcast creation platform with advanced text-to-speech capabilities and intelligent content generation.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {['Next.js', 'Convex', 'Clerk', 'OpenAI'].map((tech) => (
-                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href="https://podcaster-kappa.vercel.app"
-                        target="_blank"
-                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
-                      >
-                        View Project
-                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                    </div>
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-      
-                  {/* YumMomo Project */}
-                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src="/ecommerce.svg"
-                        width={500}
-                        height={300}
-                        alt="YumMomo Project"
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-                          E-commerce
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3">Ecom</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        Modern e-commerce platform with clean design, seamless shopping experience, order management and payment.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {['Next.js', 'PostGreSQL', 'Stripe', 'clerk authentication'].map((tech) => (
-                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href="https://ecom-eta-mauve.vercel.app"
-                        target="_blank"
-                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
-                      >
-                        View Project
-                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-      
-                  {/* SimpleBlog Project */}
-                  <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-                    <div className="relative overflow-hidden">
-                      <Image
-                        src="/blog.svg"
-                        width={500}
-                        height={300}
-                        alt="SimpleBlog Project"
-                        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-                          Content Platform
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3">SimpleBlog</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        Clean and intuitive blogging platform with rich text editing and content management capabilities.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {['Next.js', 'MongoDB', 'TinyMCE'].map((tech) => (
-                          <span key={tech} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href="https://simple-blog-silk.vercel.app/"
-                        target="_blank"
-                        className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
-                      >
-                        View Project
-                        <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-      
-                  
-        
-      
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    className="inline-flex items-center text-sm font-medium text-gray-800 hover:text-black transition-colors group/link"
+                  >
+                    View Project
+                    <svg className="w-4 h-4 ml-2 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
               </div>
-            </section>
-     
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="contact" className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
