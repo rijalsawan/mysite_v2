@@ -33,11 +33,11 @@ const Body = () => {
     {
       id: 4,
       title: "LensBook",
-      description: "A social media platform for sharing photos and connecting with friends.",
+      description: "A social media platform for sharing photos and connecting with friends. Smooth Messaging feature with read receipts, Efficient realtime notifications. ",
       image: "/lensbook.jpg",
-      technologies: ['Next.js', 'PostGreSQL', 'React hooks', 'Cloudinary', 'clerk'],
-      category: "Social Media",
-      liveUrl: "https://photography-ci2a.vercel.app/"
+      technologies: ['Next.js', 'PostGreSQL', 'React hooks', 'Cloudinary', 'clerk', 'Websocket', 'Vercel SSE'],
+      category: "Social Media & Messaging",
+      liveUrl: "https://lens-book.vercel.app"
     },
     {
       id: 3,
