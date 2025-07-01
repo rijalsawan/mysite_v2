@@ -41,12 +41,12 @@ const Body = () => {
     },
     {
       id: 3,
-      title: "SimpleBlog",
-      description: "Clean and intuitive blogging platform with rich text editing and content management capabilities.",
-      image: "/blog.svg",
-      technologies: ['Next.js', 'MongoDB', 'TinyMCE'],
-      category: "Content Platform",
-      liveUrl: "https://simple-blog-silk.vercel.app/"
+      title: "StoreIt",
+      description: "A modern SAAS cloud storage platform that allows users to upload, manage, and share files securely. Subscription-based service with Stripe integration.",
+      image: "/storeit.jpg",
+      technologies: ['React', 'ExpressJS', 'BlackBlaze B2 cloud storage', 'Stripe', 'PostGreSQL', 'NodeJs'],
+      category: "SAAS",
+      liveUrl: "https://store-it-two-navy.vercel.app"
     },
     {
       id: 1,
