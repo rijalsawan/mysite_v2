@@ -40,6 +40,15 @@ const Body = () => {
       liveUrl: "https://lens-book.vercel.app"
     },
     {
+      id: 5,
+      title: "Amazon Price Tracker",
+      description: "A web scraper that tracks Amazon product prices and notifies users of price drops.",
+      image: "/pricetracker.jpg",
+      technologies: ['React', 'PostGreSQL', 'ExpressJs', 'Web Scraper', 'Websocket'],
+      category: "Web Scraper",
+      liveUrl: "https://price-tracker-murex.vercel.app/"
+    },
+    {
       id: 3,
       title: "StoreIt",
       description: "A modern SAAS cloud storage platform that allows users to upload, manage, and share files securely. Subscription-based service with Stripe integration.",
