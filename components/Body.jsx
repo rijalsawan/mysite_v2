@@ -40,14 +40,15 @@ const Body = () => {
       liveUrl: "https://lens-book.vercel.app"
     },
     {
-      id: 5,
-      title: "Amazon Price Tracker",
-      description: "A web scraper that tracks Amazon product prices and notifies users of price drops.",
-      image: "/pricetracker.jpg",
-      technologies: ['React', 'PostGreSQL', 'ExpressJs', 'Web Scraper', 'Websocket'],
-      category: "Web Scraper",
-      liveUrl: "https://price-tracker-murex.vercel.app/"
-    },
+  id: 4,
+  title: "Phantom Driving School",
+  description: "A comprehensive driving lesson management platform with admin dashboard for instructors to manage bookings, students, payments, and lesson progress. Features real-time analytics, package management, and student progress tracking.",
+  image: "/drive.jpg",
+  technologies: ['Next.js', 'TypeScript', 'Prisma', 'Stripe', 'NextAuth', 'Recharts', 'Framer Motion', 'Tailwind CSS'],
+  category: "Business Management",
+  liveUrl: "https://phantom-xi-sage.vercel.app"
+},
+    
     {
       id: 3,
       title: "StoreIt",
