@@ -42,7 +42,7 @@ const Body = () => {
     {
   id: 4,
   title: "Phantom Driving School",
-  description: "A comprehensive driving lesson management platform with admin dashboard for instructors to manage bookings, students, payments, and lesson progress. Features real-time analytics, package management, and student progress tracking.",
+  description: "A comprehensive driving lesson management platform with admin dashboard for instructors to manage bookings, students, payments, and lesson progress. Features real-time analytics, package management, and student progress tracking. For Admin Access: email: admin@gmail.com, password: 12345678",
   image: "/drive.jpg",
   technologies: ['Next.js', 'TypeScript', 'Prisma', 'Stripe', 'NextAuth', 'Recharts', 'Framer Motion', 'Tailwind CSS'],
   category: "Business Management",
