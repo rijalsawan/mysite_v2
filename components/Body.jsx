@@ -416,12 +416,15 @@ const Body = () => {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="mt-6 bg-yellow-300 dark:bg-yellow-500 text-black border-4 border-black px-8 py-4 inline-block transform-gpu -rotate-1 shadow-[6px_6px_0px_black]"
+                className="relative mt-6 bg-[#fdf5c9] dark:bg-yellow-300 text-black border-4 border-foreground px-8 py-4 inline-block transform-gpu -rotate-1 shadow-[6px_6px_0px_currentColor]"
               >
-                <div className="text-sm md:text-base font-black uppercase tracking-wider">Level</div>
-                <div className="text-4xl md:text-6xl font-black">{level}</div>
-                {isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2">👀 Watch carefully...</div>}
-                {!isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2 text-green-600">✋ Your turn! ({userSequence.length}/{sequence.length})</div>}
+                <div className="absolute inset-1 border-2 border-dashed border-black/20 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="text-sm md:text-base font-black uppercase tracking-wider">Level</div>
+                  <div className="text-4xl md:text-6xl font-black">{level}</div>
+                  {isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2">👀 Watch carefully...</div>}
+                  {!isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2 text-green-600">✋ Your turn! ({userSequence.length}/{sequence.length})</div>}
+                </div>
               </motion.div>
             )}
 
@@ -429,67 +432,55 @@ const Body = () => {
               <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="mt-6 bg-red-500 text-white border-4 border-black px-8 py-6 inline-block transform-gpu rotate-2 shadow-[8px_8px_0px_black]"
+                className="relative mt-6 bg-[#fdb2b2] dark:bg-red-400 text-black border-4 border-foreground px-8 py-6 inline-block transform-gpu rotate-2 shadow-[8px_8px_0px_currentColor]"
               >
-                <div className="text-3xl md:text-4xl font-black uppercase">Game Over!</div>
-                <div className="text-lg md:text-xl font-bold mt-2">You reached level {level}</div>
-                {level > highScore && <div className="text-base md:text-lg font-bold mt-1 text-yellow-300">🎉 New High Score!</div>}
+                <div className="absolute inset-1 border-2 border-dashed border-black/20 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="text-3xl md:text-4xl font-black uppercase">Game Over!</div>
+                  <div className="text-lg md:text-xl font-bold mt-2">You reached level {level}</div>
+                  {level > highScore && <div className="text-base md:text-lg font-bold mt-1 text-yellow-600">🎉 New High Score!</div>}
+                </div>
               </motion.div>
             )}
 
-            {/* How to Play Sticky Note */}
+            {/* How to Play Description */}
             {showInstructions && (
               <motion.div
-                initial={{ scale: 0.8, opacity: 0, rotate: -5 }}
-                animate={{ scale: 1, opacity: 1, rotate: -2 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="mt-8 relative max-w-md mx-auto"
+                initial={{ rotate: 1, y: 20, opacity: 0 }}
+                animate={{ rotate: -1, y: 0, opacity: 1 }}
+                exit={{ rotate: 1, y: 20, opacity: 0 }}
+                transition={{ type: "spring", bounce: 0.3 }}
+                className="relative mt-8 bg-white dark:bg-zinc-900 p-6 sm:p-8 border-4 border-foreground shadow-[8px_8px_0px_currentColor] transform-gpu max-w-[38rem] mx-auto text-left"
               >
-                {/* Tape effect */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-7 bg-yellow-200/80 border-2 border-yellow-400/50 rotate-1 z-20"></div>
+                <div className="absolute top-2 left-2 right-2 bottom-2 border-2 border-dashed border-black/20 dark:border-white/20 pointer-events-none z-0" />
+                  
+                {/* Close button */}
+                <button
+                  onClick={() => setShowInstructions(false)}
+                  className="absolute -top-4 -right-4 w-10 h-10 bg-red-500 text-white border-4 border-foreground rounded-full shadow-[4px_4px_0px_currentColor] font-black text-xl hover:scale-110 flex items-center justify-center z-30"
+                >
+                  ✕
+                </button>
 
-                {/* Sticky Note */}
-                <div className="relative bg-[#fdf5c9] dark:bg-yellow-300 border-4 border-foreground shadow-[6px_6px_0px_currentColor] p-6 text-black">
-                  {/* Close button */}
-                  <button
-                    onClick={() => setShowInstructions(false)}
-                    className="absolute -top-3 -right-3 w-10 h-10 bg-red-500 text-white border-4 border-foreground rounded-full shadow-[4px_4px_0px_currentColor] font-black text-xl hover:scale-110 transition-transform flex items-center justify-center z-30"
-                  >
-                    ✕
-                  </button>
-
+                <div className="relative z-10 text-foreground font-mono">
                   {/* Title */}
-                  <div className="mb-4 pb-3 border-b-4 border-dashed border-black/20">
-                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight flex items-center gap-2">
-                      <span className="text-3xl">📖</span>
-                      How to Play
-                    </h3>
-                  </div>
+                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-6 flex items-center gap-2">
+                    <span className="font-black bg-[#88eeff] dark:bg-blue-500 text-black px-2 py-0.5 border-2 border-foreground inline-block -rotate-2 shadow-[2px_2px_0px_currentColor]">How to Play</span>
+                  </h3>
 
                   {/* Instructions */}
-                  <div className="space-y-3 text-base md:text-lg font-bold">
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0">1️⃣</span>
-                      <p>Watch the new block light up each level</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0">2️⃣</span>
-                      <p>Click ALL blocks in the complete sequence</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0">3️⃣</span>
-                      <p>Remember all previous blocks - only the NEW one lights up!</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0">❌</span>
-                      <p>Wrong click = Game Over</p>
-                    </div>
-                  </div>
-
-                  {/* Good luck message */}
-                  <div className="mt-5 pt-4 border-t-4 border-dashed border-black/20">
-                    <p className="text-center text-xl md:text-2xl font-black text-green-600">
-                      Good Luck! 🎯
+                  <div className="space-y-4 text-base md:text-lg font-bold leading-relaxed">
+                    <p>
+                      <span className="inline-block w-8 text-center bg-[#ffaa88] dark:bg-red-500 text-black px-1 py-0.5 border-2 border-foreground rotate-2 shadow-[2px_2px_0px_currentColor] mr-2">1</span> 
+                      Watch the <span className="underline decoration-wavy decoration-[#88eeff] dark:decoration-blue-500 underline-offset-4 decoration-2">new block</span> light up.
+                    </p>
+                    <p>
+                      <span className="inline-block w-8 text-center bg-[#ffaa88] dark:bg-red-500 text-black px-1 py-0.5 border-2 border-foreground -rotate-2 shadow-[2px_2px_0px_currentColor] mr-2">2</span> 
+                      Click <span className="underline decoration-wavy decoration-[#ffaa88] dark:decoration-red-500 underline-offset-4 decoration-2">ALL blocks</span> in the complete sequence.
+                    </p>
+                    <p>
+                      <span className="inline-block w-8 text-center bg-[#ffaa88] dark:bg-red-500 text-black px-1 py-0.5 border-2 border-foreground rotate-2 shadow-[2px_2px_0px_currentColor] mr-2">3</span> 
+                      Wrong click = <span className="bg-red-500 text-white px-2 py-0.5 border-2 border-foreground shadow-[2px_2px_0px_currentColor] inline-block -rotate-1">Game Over</span>
                     </p>
                   </div>
                 </div>
@@ -542,10 +533,13 @@ const Body = () => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4 bg-white dark:bg-zinc-800 border-4 border-foreground px-6 py-3 inline-block rotate-1 shadow-[4px_4px_0px_currentColor]"
+                className="relative mt-4 bg-[#fdf5c9] dark:bg-yellow-300 border-4 border-foreground px-8 py-4 inline-block rotate-1 shadow-[4px_4px_0px_currentColor]"
               >
-                <div className="text-sm font-black uppercase tracking-wider text-muted-foreground">High Score</div>
-                <div className="text-3xl font-black text-yellow-600 dark:text-yellow-400">Level {highScore}</div>
+                <div className="absolute inset-1 border-2 border-dashed border-black/20 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="text-sm font-black uppercase tracking-wider text-black/60">High Score</div>
+                  <div className="text-3xl font-black text-black">Level {highScore}</div>
+                </div>
               </motion.div>
             )}
           </div>
@@ -666,12 +660,12 @@ const Body = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -8 }}
-                className="w-full max-w-sm bg-[#fffff8] dark:bg-[#1f1e1c] rounded flex flex-col border-4 border-foreground shadow-[8px_8px_0px_currentColor] group transition-all relative"
+                className="w-full max-w-sm bg-[#fffff8] dark:bg-[#1f1e1c] rounded flex flex-col border-4 border-foreground shadow-[8px_8px_0px_currentColor] group relative will-change-transform"
               >
                 {/* Notebook Rules (Horizontal lines) */}
                 <div className="absolute inset-0 mt-8 bg-[linear-gradient(transparent_95%,rgba(0,0,0,0.1)_95%)] dark:bg-[linear-gradient(transparent_95%,rgba(255,255,255,0.08)_95%)] bg-[length:100%_2rem] pointer-events-none z-0" />
@@ -777,12 +771,12 @@ const Body = () => {
             ].map((photo, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, scale: 0.8, rotate: photo.rot * 3 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: photo.rot }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 30, rotate: photo.rot * 2 }}
+                whileInView={{ opacity: 1, y: 0, rotate: photo.rot }}
+                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+                transition={{ duration: 0.4, delay: i * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, rotate: 0, zIndex: 40 }}
-                className={`relative w-full max-w-[320px] bg-[#fffff8] p-4 pb-16 md:p-5 md:pb-20 border-2 transition-transform duration-300 border-foreground shadow-[8px_8px_0px_currentColor] ${photo.mt}`}
+                className={`relative w-full max-w-[320px] bg-[#fffff8] p-4 pb-16 md:p-5 md:pb-20 border-2 border-foreground shadow-[8px_8px_0px_currentColor] will-change-transform ${photo.mt}`}
               >
                 {/* Tape */}
                 <div className={`absolute top-[-0.75rem] left-1/2 -translate-x-1/2 w-16 h-6 bg-white/70 backdrop-blur-sm border-2 border-foreground/30 ${i % 2 === 0 ? 'rotate-2' : '-rotate-2'} z-30 opacity-80`} />
