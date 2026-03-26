@@ -154,7 +154,7 @@ const Body = () => {
 
   const skills = [
     { name: "HTML", color: "#E65100" },
-    { name: "CSS", color: "#0277BD" },
+    { name: "Docker", color: "#0277BD" },
     { name: "JavaScript", color: "#F7DF1E" },
     { name: "TypeScript", color: "#3178C6" },
     { name: "React", color: "#61DAFB" },
