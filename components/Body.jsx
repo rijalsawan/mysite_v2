@@ -154,7 +154,7 @@ const Body = () => {
 
   const skills = [
     { name: "HTML", color: "#E65100" },
-    { name: "Docker", color: "#0277BD" },
+    { name: "Tailwind CSS", color: "#06B6D4" },
     { name: "JavaScript", color: "#F7DF1E" },
     { name: "TypeScript", color: "#3178C6" },
     { name: "React", color: "#61DAFB" },
@@ -163,7 +163,7 @@ const Body = () => {
     { name: "Express", color: "#000000" },
     { name: "MongoDB", color: "#47A248" },
     { name: "PostgreSQL", color: "#4169E1" },
-    { name: "Tailwind CSS", color: "#06B6D4" },
+    { name: "Docker", color: "#0277BD" }
   ];
 
   const [displaySkills, setDisplaySkills] = useState(skills);
