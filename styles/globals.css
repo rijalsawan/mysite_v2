@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;600;700;800&family=Kalam:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +11,7 @@
     background-position-y: 20%;
     background-position-x: 50%;
     animation: morph 8s ease-in-out infinite;
-    border: 4px solid #2d2e32;
+    border: 4px solid hsl(var(--foreground) / 0.8);
     border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
     /* height: 48rem; */
     transition: all 1s ease-in-out;
@@ -21,8 +23,17 @@
       border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-img {
+    animation: none;
+    transition: none;
+  }
+}
   @layer base {
   :root {
+    --font-body: "Nunito", "Segoe UI", sans-serif;
+    --font-display: "Baloo 2", "Trebuchet MS", sans-serif;
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
         --card: 0 0% 100%;
@@ -79,8 +90,40 @@
   @layer base {
   * {
     @apply border-border;
-    }
+  }
   body {
+    font-family: var(--font-body);
     @apply bg-background text-foreground;
-    }
+  }
+
+  h1, h2, h3, h4, h5, h6, button {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 2;
+}
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+.tech-stack-stage {
+  background-image:
+    radial-gradient(circle at 15% 20%, hsl(var(--primary) / 0.08), transparent 35%),
+    radial-gradient(circle at 85% 80%, hsl(var(--primary) / 0.1), transparent 40%);
 }
