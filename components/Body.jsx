@@ -21,17 +21,25 @@ const Body = () => {
 
   const projects = [
     {
+      id: 1,
+      title: "TrackRSP",
+      description: "Political transparency and governance tracking platform with real-time parliamentary data scraping, member profiles, law tracking, promise monitoring, public sentiment polling, and comprehensive discussion forums.",
+       image: "/gov.jpg",
+      technologies: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
+      category: "Governance & Transparency",
+      liveUrl: "https://parliament-watch.vercel.app"
+    },
+    {
       id: 2,
-      title: "Ecom",
+      title: "Mo:Mo Station",
       description: "Modern e-commerce platform with clean design, seamless shopping experience, order management and payment.",
       image: "/ecommerce.svg",
-      technologies: ['Next.js', 'PostGreSQL', 'Stripe', 'clerk authentication'],
+      technologies: ['Next.js', 'PostGreSQL', 'Stripe', 'Google Oauth', 'NextAuth', 'Framer Motion', 'Tailwind CSS'],
       category: "E-commerce",
-      liveUrl: "https://ecom-eta-mauve.vercel.app"
+      liveUrl: "https://himalayanmomo.vercel.app"
     },
-    
     {
-      id: 4,
+      id: 3,
       title: "LensBook",
       description: "A social media platform for sharing photos and connecting with friends. Smooth Messaging feature with read receipts, Efficient realtime notifications. ",
       image: "/lensbook.jpg",
@@ -50,7 +58,7 @@ const Body = () => {
 },
     
     {
-      id: 3,
+      id: 5,
       title: "StoreIt",
       description: "A modern SAAS cloud storage platform that allows users to upload, manage, and share files securely. Subscription-based service with Stripe integration.",
       image: "/storeit.jpg",
@@ -58,17 +66,6 @@ const Body = () => {
       category: "SAAS",
       liveUrl: "https://store-it-two-navy.vercel.app"
     },
-    {
-      id: 1,
-      title: "Podcaster",
-      description: "AI-powered podcast creation platform with advanced text-to-speech capabilities and intelligent content generation.",
-      image: "/podcast.svg",
-      technologies: ['Next.js', 'Convex', 'Clerk', 'OpenAI'],
-      category: "AI Powered",
-      liveUrl: "https://podcaster-kappa.vercel.app"
-    },
-    
-    
   ];
 
   return (
