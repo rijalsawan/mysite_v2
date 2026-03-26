@@ -7,10 +7,11 @@ import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Tech", href: "#tech-stack" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Tech", href: "/#tech-stack" },
+    { name: "Resume", href: "/resume" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -96,7 +97,13 @@ const Navbar = () => {
           ))}
           
           <div className="w-1 h-8 bg-foreground/20 rounded-full mx-2" />
-          
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/resume" className="font-black text-sm lg:text-base uppercase tracking-widest px-4 py-1.5 border-2 border-foreground bg-primary text-primary-foreground shadow-[4px_4px_0px_currentColor] hover:translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_currentColor] transition-all inline-block">RESUME</Link>
+          </motion.div>
+
+          <div className="w-1 h-8 bg-foreground/20 rounded-full mx-2" />
+
           <DarkmodeSwitch />
         </div>
       </section>
@@ -105,3 +112,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

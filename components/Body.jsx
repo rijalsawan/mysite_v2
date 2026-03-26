@@ -243,15 +243,14 @@ const Body = () => {
               <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.05)_50%,transparent_75%,transparent_100%)] bg-[length:4px_4px] pointer-events-none" />
               <Github className="w-8 h-8 text-black relative z-10 drop-shadow-md" />
             </Link>
-            <button
+            <Link
               type="button"
-              onClick={handleDownload}
+              href="/resume"
               className="group bg-primary text-primary-foreground px-6 md:px-10 py-3 md:py-4 border-4 border-foreground rounded-xl shadow-[4px_4px_0px_currentColor] md:shadow-[6px_6px_0px_currentColor] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all flex items-center gap-3 font-black text-lg md:text-xl uppercase tracking-widest relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:1rem_1rem] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-0"></div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="relative z-10"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
               <span className="relative z-10">Resume</span>
-            </button>
+            </Link>
           </div>
         </motion.div>
       </section>
