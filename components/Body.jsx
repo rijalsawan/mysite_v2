@@ -33,6 +33,7 @@ const SkillBadge = ({ skill, index, constraintsRef, shouldReduceMotion, resetTri
       whileInView={{ opacity: 1, y: 0, rotate: shouldReduceMotion ? 0 : rotate }}
       viewport={{ once: true }}
       animate={controls}
+      style={{ touchAction: "none" }}
       className="cursor-grab relative z-10 flex items-stretch bg-card border-2 md:border-4 border-foreground rounded-xl md:rounded-2xl hover:z-20 group shadow-[4px_4px_0px_currentColor] overflow-hidden text-foreground"
     >
       {/* Brand Color Sidebar */}
