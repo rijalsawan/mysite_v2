@@ -5,36 +5,57 @@ import { motion, useReducedMotion, useAnimation } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Mail } from "lucide-react";
 
-const SkillBadge = ({ skill, index, constraintsRef, shouldReduceMotion, resetTrigger }) => {
-  const controls = useAnimation();
-  const rotate = [3, -2, 4, -3, 2, -4][index % 6];
-
-  useEffect(() => {
-    if (resetTrigger > 0) {
-      controls.start({
-        x: 0,
-        y: 0,
-        rotate: shouldReduceMotion ? 0 : rotate,
-        transition: { type: "spring", stiffness: 300, damping: 20 }
-      });
-    }
-  }, [resetTrigger, controls, shouldReduceMotion, rotate]);
+const SkillBadge = ({ skill, index, shouldReduceMotion, isActive, isPlaying, onClick }) => {
+  const baseRotate = [3, -2, 4, -3, 2, -4][index % 6];
+  const floatDelay = (index % 5) * 0.2;
 
   return (
     <motion.div
-      drag={!shouldReduceMotion}
-      dragConstraints={constraintsRef}
-      dragElastic={0.2}
-      dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
-      dragMomentum={true}
-      whileDrag={{ scale: 1.15, zIndex: 50, cursor: "grabbing" }}
-      whileHover={{ scale: 1.05 }}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0, rotate: shouldReduceMotion ? 0 : rotate }}
+      layout
+      onClick={() => onClick(skill.name)}
+      initial={{ opacity: 0, scale: 0.8, rotate: baseRotate }}
+      whileInView={{
+        opacity: 1,
+        scale: 1,
+        rotate: shouldReduceMotion ? 0 : baseRotate,
+        y: shouldReduceMotion ? 0 : [0, -8, 0]
+      }}
       viewport={{ once: true }}
-      animate={controls}
-      style={{ touchAction: "none" }}
-      className="cursor-grab relative z-10 flex items-stretch bg-card border-2 md:border-4 border-foreground rounded-xl md:rounded-2xl hover:z-20 group shadow-[4px_4px_0px_currentColor] overflow-hidden text-foreground"
+      transition={{
+        layout: { type: "spring", stiffness: 300, damping: 20 },
+        y: {
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+          delay: floatDelay
+        },
+        opacity: { duration: 0.5 }
+      }}
+      whileHover={{
+        scale: 1.15,
+        rotate: 0,
+        y: -10,
+        zIndex: 50,
+        transition: { type: "spring", stiffness: 400, damping: 15 }
+      }}
+      whileTap={{
+        scale: 0.95,
+        rotate: baseRotate * -1.5,
+        zIndex: 50,
+        boxShadow: "0px 0px 0px currentColor",
+        transition: { type: "spring", stiffness: 400, damping: 10 }
+      }}
+      animate={isActive ? {
+        scale: 1.3,
+        rotate: 0,
+      } : {}}
+      className={`relative z-10 flex items-stretch border-2 md:border-4 rounded-xl md:rounded-2xl hover:z-50 shadow-[4px_4px_0px_currentColor] md:shadow-[6px_6px_0px_currentColor] hover:shadow-[8px_8px_0px_currentColor] overflow-hidden text-foreground cursor-pointer select-none ${
+        isActive ? 'border-yellow-400' : 'border-foreground'
+      } ${isActive ? 'bg-yellow-400 text-black' : 'bg-card'}`}
+      style={{
+        touchAction: 'manipulation'
+      }}
     >
       {/* Brand Color Sidebar */}
       <div 
@@ -70,9 +91,7 @@ const SkillBadge = ({ skill, index, constraintsRef, shouldReduceMotion, resetTri
 };
 
 const Body = () => {
-  const [resetKey, setResetKey] = useState(0);
   const shouldReduceMotion = useReducedMotion();
-  const constraintsRef = useRef(null);
 
   const handleDownload = () => {
     const resumeUrl = '/resume.pdf';
@@ -147,6 +166,122 @@ const Body = () => {
     { name: "Tailwind CSS", color: "#06B6D4" },
   ];
 
+  const [displaySkills, setDisplaySkills] = useState(skills);
+
+  // Memory Game State - Use all 11 skills
+  const gameSkills = skills.map(skill => skill.name);
+  const [sequence, setSequence] = useState([]);
+  const [userSequence, setUserSequence] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isShowingSequence, setIsShowingSequence] = useState(false);
+  const [activeSkill, setActiveSkill] = useState(null);
+  const [level, setLevel] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+  const [gameOverState, setGameOverState] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+
+  // Show the sequence to user
+  const showSequence = async (seq) => {
+    setIsShowingSequence(true);
+    setUserSequence([]);
+
+    for (let i = 0; i < seq.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 600));
+      setActiveSkill(seq[i]);
+      await new Promise(resolve => setTimeout(resolve, 600));
+      setActiveSkill(null);
+    }
+
+    setIsShowingSequence(false);
+  };
+
+  // Start game
+  const startGame = () => {
+    const firstSkill = gameSkills[Math.floor(Math.random() * gameSkills.length)];
+    const newSequence = [firstSkill];
+
+    setIsPlaying(true);
+    setLevel(1);
+    setSequence(newSequence);
+    setUserSequence([]);
+    setGameOverState(false);
+    setShowInstructions(false);
+
+    showSequence(newSequence);
+  };
+
+  // Add to sequence and show only the new block
+  const nextRound = () => {
+    const nextSkill = gameSkills[Math.floor(Math.random() * gameSkills.length)];
+    const newSequence = [...sequence, nextSkill];
+
+    setLevel(level + 1);
+    setSequence(newSequence);
+    setUserSequence([]);
+
+    // Only show the new skill, not the entire sequence
+    showSequence([nextSkill]);
+  };
+
+  // Handle user click
+  const handleSkillClick = (skillName) => {
+    if (!isPlaying || isShowingSequence) return;
+    if (!gameSkills.includes(skillName)) return;
+
+    // Hide instructions after first click
+    if (showInstructions && userSequence.length === 0) {
+      setShowInstructions(false);
+    }
+
+    // Flash the clicked skill
+    setActiveSkill(skillName);
+    setTimeout(() => setActiveSkill(null), 300);
+
+    const newUserSequence = [...userSequence, skillName];
+    setUserSequence(newUserSequence);
+
+    // Check if this click is correct
+    const currentIndex = newUserSequence.length - 1;
+    if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
+      // Wrong! Game over
+      setGameOverState(true);
+      setIsPlaying(false);
+      setIsShowingSequence(false);
+      setShowInstructions(false);
+
+      if (level > highScore) {
+        setHighScore(level);
+      }
+
+      setTimeout(() => {
+        setGameOverState(false);
+        setSequence([]);
+        setUserSequence([]);
+        setLevel(0);
+      }, 2500);
+      return;
+    }
+
+    // Check if user completed the sequence
+    if (newUserSequence.length === sequence.length) {
+      // Correct! Move to next round
+      setTimeout(() => {
+        nextRound();
+      }, 800);
+    }
+  };
+
+  // Stop game
+  const stopGame = () => {
+    setIsPlaying(false);
+    setIsShowingSequence(false);
+    setSequence([]);
+    setUserSequence([]);
+    setLevel(0);
+    setActiveSkill(null);
+    setShowInstructions(false);
+  };
+
   const heroLetters = "Web Developer".split("");
 
   return (
@@ -179,7 +314,7 @@ const Body = () => {
                
                <h1 className="text-4xl sm:text-6xl lg:text-[5rem] font-black tracking-tighter text-black leading-[1.05] uppercase relative z-10 text-center lg:text-left">
                  <span className="block w-fit mx-auto lg:mx-0">Full-Stack</span>
-                 <span className="mt-1 md:mt-2 block w-fit mx-auto lg:mx-0">
+                 <span className="mt-1 md:mt-2 block w-fit mx-a_0px_black0">
                    Web Developer
                  </span>
                </h1>
@@ -269,34 +404,164 @@ const Body = () => {
               My Tech Arsenal
             </motion.h2>
             <p className="mt-8 text-xl text-muted-foreground font-bold max-w-2xl mx-auto tracking-wide">
-              {shouldReduceMotion 
-                ? "The tools I use to bring ideas to life." 
-                : "Grab and drag these around! The tools I use to build digital experiences."}
+              {isPlaying
+                ? `Remember the full sequence! Level ${level} (only new block lights up)`
+                : shouldReduceMotion
+                  ? "The tools I use to bring ideas to life."
+                  : "Play the Memory Game with my tech skills!"}
             </p>
-            {!shouldReduceMotion && (
-              <motion.button
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setResetKey(prev => prev + 1)}
-                className="mt-6 bg-secondary text-secondary-foreground px-6 py-2 border-2 md:border-4 border-foreground rounded-xl shadow-[2px_2px_0px_currentColor] md:shadow-[4px_4px_0px_currentColor] font-black text-sm md:text-base uppercase tracking-wider transition-colors hover:bg-primary hover:text-primary-foreground"
+
+            {/* Game UI */}
+            {isPlaying && !gameOverState && (
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="mt-6 bg-yellow-300 dark:bg-yellow-500 text-black border-4 border-black px-8 py-4 inline-block transform-gpu -rotate-1 shadow-[6px_6px_0px_black]"
               >
-                Reset Blocks
-              </motion.button>
+                <div className="text-sm md:text-base font-black uppercase tracking-wider">Level</div>
+                <div className="text-4xl md:text-6xl font-black">{level}</div>
+                {isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2">👀 Watch carefully...</div>}
+                {!isShowingSequence && <div className="text-xs md:text-sm font-bold mt-2 text-green-600">✋ Your turn! ({userSequence.length}/{sequence.length})</div>}
+              </motion.div>
+            )}
+
+            {gameOverState && (
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="mt-6 bg-red-500 text-white border-4 border-black px-8 py-6 inline-block transform-gpu rotate-2 shadow-[8px_8px_0px_black]"
+              >
+                <div className="text-3xl md:text-4xl font-black uppercase">Game Over!</div>
+                <div className="text-lg md:text-xl font-bold mt-2">You reached level {level}</div>
+                {level > highScore && <div className="text-base md:text-lg font-bold mt-1 text-yellow-300">🎉 New High Score!</div>}
+              </motion.div>
+            )}
+
+            {/* How to Play Sticky Note */}
+            {showInstructions && (
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0, rotate: -5 }}
+                animate={{ scale: 1, opacity: 1, rotate: -2 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                className="mt-8 relative max-w-md mx-auto"
+              >
+                {/* Tape effect */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-7 bg-yellow-200/80 border-2 border-yellow-400/50 rotate-1 z-20"></div>
+
+                {/* Sticky Note */}
+                <div className="relative bg-[#fdf5c9] dark:bg-yellow-300 border-4 border-foreground shadow-[6px_6px_0px_currentColor] p-6 text-black">
+                  {/* Close button */}
+                  <button
+                    onClick={() => setShowInstructions(false)}
+                    className="absolute -top-3 -right-3 w-10 h-10 bg-red-500 text-white border-4 border-foreground rounded-full shadow-[4px_4px_0px_currentColor] font-black text-xl hover:scale-110 transition-transform flex items-center justify-center z-30"
+                  >
+                    ✕
+                  </button>
+
+                  {/* Title */}
+                  <div className="mb-4 pb-3 border-b-4 border-dashed border-black/20">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight flex items-center gap-2">
+                      <span className="text-3xl">📖</span>
+                      How to Play
+                    </h3>
+                  </div>
+
+                  {/* Instructions */}
+                  <div className="space-y-3 text-base md:text-lg font-bold">
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl shrink-0">1️⃣</span>
+                      <p>Watch the new block light up each level</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl shrink-0">2️⃣</span>
+                      <p>Click ALL blocks in the complete sequence</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl shrink-0">3️⃣</span>
+                      <p>Remember all previous blocks - only the NEW one lights up!</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl shrink-0">❌</span>
+                      <p>Wrong click = Game Over</p>
+                    </div>
+                  </div>
+
+                  {/* Good luck message */}
+                  <div className="mt-5 pt-4 border-t-4 border-dashed border-black/20">
+                    <p className="text-center text-xl md:text-2xl font-black text-green-600">
+                      Good Luck! 🎯
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {!shouldReduceMotion && (
+              <div className="mt-6 flex flex-wrap justify-center gap-4">
+                {!isPlaying ? (
+                  <>
+                    <motion.button
+                      whileHover={{ scale: 1.05, rotate: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={startGame}
+                      className="bg-green-500 text-black px-6 py-2 border-2 md:border-4 border-foreground rounded-xl shadow-[2px_2px_0px_currentColor] md:shadow-[4px_4px_0px_currentColor] font-black text-sm md:text-base uppercase tracking-wider transition-all hover:bg-green-400"
+                    >
+                      ▶ Play
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05, rotate: 2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setShowInstructions(!showInstructions)}
+                      className="bg-blue-500 text-white px-6 py-2 border-2 md:border-4 border-foreground rounded-xl shadow-[2px_2px_0px_currentColor] md:shadow-[4px_4px_0px_currentColor] font-black text-sm md:text-base uppercase tracking-wider transition-all hover:bg-blue-400"
+                    >
+                      ? How to Play
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05, rotate: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setDisplaySkills([...displaySkills].sort(() => Math.random() - 0.5))}
+                      className="bg-secondary text-secondary-foreground px-6 py-2 border-2 md:border-4 border-foreground rounded-xl shadow-[2px_2px_0px_currentColor] md:shadow-[4px_4px_0px_currentColor] font-black text-sm md:text-base uppercase tracking-wider transition-colors hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Shuffle Stack
+                    </motion.button>
+                  </>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={stopGame}
+                    className="bg-red-500 text-white px-6 py-3 border-2 md:border-4 border-foreground rounded-xl shadow-[2px_2px_0px_currentColor] md:shadow-[4px_4px_0px_currentColor] font-black text-sm md:text-base uppercase tracking-wider transition-all hover:shadow-none hover:translate-x-1 hover:translate-y-1"
+                  >
+                    ✕ Stop Game
+                  </motion.button>
+                )}
+              </div>
+            )}
+
+            {!isPlaying && highScore > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 bg-white dark:bg-zinc-800 border-4 border-foreground px-6 py-3 inline-block rotate-1 shadow-[4px_4px_0px_currentColor]"
+              >
+                <div className="text-sm font-black uppercase tracking-wider text-muted-foreground">High Score</div>
+                <div className="text-3xl font-black text-yellow-600 dark:text-yellow-400">Level {highScore}</div>
+              </motion.div>
             )}
           </div>
 
-          <div 
-            ref={constraintsRef} 
-            className="relative w-full p-4 sm:p-6 md:p-12 min-h-[400px] md:min-h-[550px] flex flex-wrap justify-center content-start sm:content-center gap-2 sm:gap-4 md:gap-6 pointer-events-auto"
+          <div
+            className="relative w-full p-4 sm:p-6 md:p-12 min-h-[400px] md:min-h-[550px] flex flex-wrap justify-center content-start sm:content-center gap-4 sm:gap-6 md:gap-8 pointer-events-auto"
           >
-            {skills.map((skill, index) => (
+            {displaySkills.map((skill, index) => (
               <SkillBadge
                 key={skill.name}
                 skill={skill}
                 index={index}
-                constraintsRef={constraintsRef}
                 shouldReduceMotion={shouldReduceMotion}
-                resetTrigger={resetKey}
+                isActive={activeSkill === skill.name}
+                isPlaying={isPlaying}
+                onClick={handleSkillClick}
               />
             ))}
           </div>
