@@ -37,7 +37,6 @@ export default function Resume() {
             
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
               <span className="flex items-center gap-1"><MapPin size={16} /> Winnipeg, MB</span>
-              <span className="flex items-center gap-1"><Phone size={16} /> 431-554-8618</span>
               <a href="mailto:rijalsawan@gmail.com" className="flex items-center gap-1 hover:underline">
                 <Mail size={16} /> rijalsawan@gmail.com
               </a>
