@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { Mail, Phone, MapPin, Globe, Linkedin, Github, Printer } from 'lucide-react';
 
 export default function Resume() {
@@ -12,9 +13,9 @@ export default function Resume() {
       <div className="min-h-screen bg-background text-foreground py-10 print:py-0 print:bg-white print:text-black">
         {/* Print Button (Hidden when printing) */}
         <div className="max-w-[850px] mx-auto mb-6 flex justify-between items-center px-4 print:hidden">
-          <a href="/" className="border-2 border-foreground px-4 py-2 font-bold hover:bg-foreground hover:text-background transition-colors">
+          <Link href="/" className="border-2 border-foreground px-4 py-2 font-bold hover:bg-foreground hover:text-background transition-colors">
             &larr; BACK TO PORTFOLIO
-          </a>
+          </Link>
           <button 
             onClick={() => window.print()}
             className="flex items-center gap-2 bg-primary text-primary-foreground border-2 border-foreground px-4 py-2 font-bold shadow-[4px_4px_0px_currentColor] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_currentColor] transition-all"

@@ -493,7 +493,7 @@ const Body = () => {
             </h2>
             <div className="relative">
               <p className="font-[Kalam,cursive] text-xl md:text-2xl font-bold text-foreground rotate-2 bg-[#fffff8] dark:bg-zinc-800 p-4 border-2 border-foreground shadow-[4px_4px_0px_currentColor]">
-                When I'm not coding, I love capturing moments!
+                When I&apos;m not coding, I love capturing moments!
               </p>
               {/* Push pin style */}
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-red-500 border-2 border-foreground shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.5),2px_2px_0px_currentColor] z-30"></div>
