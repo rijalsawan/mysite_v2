@@ -9,14 +9,14 @@ export default function Resume() {
         <title>Sawan Rijal - Resume</title>
         <meta name="robots" content="noindex" />
       </Head>
-      
+
       <div className="min-h-screen bg-background text-foreground py-10 print:py-0 print:bg-white print:text-black">
         {/* Print Button (Hidden when printing) */}
         <div className="max-w-[850px] mx-auto mb-6 flex justify-between items-center px-4 print:hidden">
           <Link href="/" className="border-2 border-foreground px-4 py-2 font-bold hover:bg-foreground hover:text-background transition-colors">
             &larr; BACK TO PORTFOLIO
           </Link>
-          <button 
+          <button
             onClick={() => window.print()}
             className="flex items-center gap-2 bg-primary text-primary-foreground border-2 border-foreground px-4 py-2 font-bold shadow-[4px_4px_0px_currentColor] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0px_currentColor] transition-all"
           >
@@ -27,14 +27,14 @@ export default function Resume() {
 
         {/* Resume Sheet */}
         <div className="max-w-[850px] mx-auto bg-card text-card-foreground border-4 border-foreground shadow-[12px_12px_0px_currentColor] print:shadow-none print:border-none print:max-w-none print:w-full print:p-0 p-8 sm:p-12 relative">
-          
+
           {/* Header */}
           <header className="border-b-4 border-foreground print:border-b-2 print:border-black pb-6 mb-6">
             <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter mb-2">Sawan Rijal</h1>
             <h2 className="text-xl sm:text-2xl font-bold text-primary print:text-black mb-4">
               Full-Stack Developer | Applied Computer Science Graduate
             </h2>
-            
+
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
               <span className="flex items-center gap-1"><MapPin size={16} /> Winnipeg, MB</span>
               <a href="mailto:rijalsawan@gmail.com" className="flex items-center gap-1 hover:underline">
@@ -54,7 +54,7 @@ export default function Resume() {
 
           {/* Details */}
           <div className="space-y-6">
-            
+
             {/* Summary */}
             <section>
               <h3 className="text-2xl font-black uppercase tracking-wide border-b-4 border-foreground print:border-b-2 print:border-black inline-block mb-3">Summary</h3>
@@ -69,16 +69,16 @@ export default function Resume() {
               <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 text-sm font-medium">
                 <div className="font-black uppercase">Languages:</div>
                 <div>JavaScript, TypeScript, Java, Python</div>
-                
+
                 <div className="font-black uppercase">Frontend:</div>
                 <div>React.js, Next.js, HTML5, CSS3, Tailwind CSS, Responsive Design</div>
-                
+
                 <div className="font-black uppercase">Backend:</div>
                 <div>Node.js, Express.js, RESTful APIs, Authentication, WebSocket</div>
-                
+
                 <div className="font-black uppercase">Databases:</div>
                 <div>PostgreSQL, MongoDB, Prisma ORM</div>
-                
+
                 <div className="font-black uppercase">Cloud & Tools:</div>
                 <div>Vercel, Railway, Stripe, Clerk Auth, Git, Agile Development</div>
               </div>
@@ -88,7 +88,17 @@ export default function Resume() {
             <section>
               <h3 className="text-2xl font-black uppercase tracking-wide border-b-4 border-foreground print:border-b-2 print:border-black inline-block mb-3">Projects</h3>
               <div className="space-y-4">
-                
+                <div>
+                  <div className="flex justify-between items-baseline mb-1">
+                    <h4 className="text-lg font-black">Recreate – AI Image Suite</h4>
+                  </div>
+                  <div className="text-sm font-bold opacity-80 mb-2">Next.js 14, TypeScript, PostgreSQL, PixiJS, Recraft V4 API, GPT Image 2</div>
+                  <ul className="list-disc list-inside text-sm font-medium space-y-1 ml-2 marker:text-primary print:marker:text-black">
+                    <li>Built a solo AI image suite with 15 professional tools including contextual inpainting, SVG vector generation, background removal, and upscaling — powered by Recraft V4 and GPT Image 2.</li>
+                    <li>Migrated canvas rendering from Canvas 2D to PixiJS for high-performance workspace handling 45+ images with zero lag.</li>
+                    <li>Integrated Stripe subscription billing with tiered plans and Cloudinary for optimized image storage and delivery.</li>
+                  </ul>
+                </div>
                 <div>
                   <div className="flex justify-between items-baseline mb-1">
                     <h4 className="text-lg font-black">Mo:Mo Station – E-commerce Platform</h4>
@@ -113,17 +123,7 @@ export default function Resume() {
                   </ul>
                 </div>
 
-                <div>
-                  <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="text-lg font-black">StoreIt – SAAS Cloud Storage App</h4>
-                  </div>
-                  <div className="text-sm font-bold opacity-80 mb-2">React, Node.js, Express, PostgreSQL</div>
-                  <ul className="list-disc list-inside text-sm font-medium space-y-1 ml-2 marker:text-primary print:marker:text-black">
-                    <li>Created scalable cloud storage platform with file upload/download and subscription management.</li>
-                    <li>Integrated Stripe billing system with tiered plans (FREE/PRO/BUSINESS) and Backblaze B2 storage.</li>
-                    <li>Implemented secure authentication with JWT tokens and automated storage limit enforcement.</li>
-                  </ul>
-                </div>
+                
 
                 <div>
                   <div className="flex justify-between items-baseline mb-1">

@@ -106,12 +106,12 @@ const Body = () => {
   const projects = [
     {
       id: 1,
-      title: "Parliament Watch",
-      description: "Political transparency and governance tracking platform with real-time parliamentary data scraping, member profiles, law tracking, promise monitoring, public sentiment polling, and comprehensive discussion forums.",
-       image: "/gov.jpg",
-      technologies: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
-      category: "Governance & Transparency",
-      liveUrl: "https://parliament-watch.vercel.app"
+      title: "Recreate",
+      description: "Recreate is an AI image suite for students and designers. Generate text-accurate images, editable SVG vectors, and photoreal visuals from a single canvas — powered by Recraft V4 and GPT Image 2. Includes 15 tools: contextual inpainting, background removal, upscaling, vectorization, and custom style creation. Built solo, priced fair.",
+      image: "/recreate.jpg",
+      technologies: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Prisma ORM', 'Cloudinary', 'PixiJS (Canvas Rendering)', 'Stripe Payments', 'Recraft V4 API', 'GPT Image 2 API', 'Tailwind CSS', 'shadcn/ui', 'Framer Motion', 'NextAuth.js', 'Redis'],
+      category: "SAAS",
+      liveUrl: "https://recreate-studio.app"
     },
     {
       id: 2,
@@ -143,12 +143,12 @@ const Body = () => {
     
     {
       id: 5,
-      title: "StoreIt",
-      description: "A modern SAAS cloud storage platform that allows users to upload, manage, and share files securely. Subscription-based service with Stripe integration.",
-      image: "/storeit.jpg",
-      technologies: ['React', 'ExpressJS', 'BlackBlaze B2 cloud storage', 'Stripe', 'PostGreSQL', 'NodeJs'],
-      category: "SAAS",
-      liveUrl: "https://store-it-two-navy.vercel.app"
+      title: "Parliament Watch",
+      description: "Political transparency and governance tracking platform with real-time parliamentary data scraping, member profiles, law tracking, promise monitoring, public sentiment polling, and comprehensive discussion forums.",
+       image: "/gov.jpg",
+      technologies: ['Next.js', 'PostgreSQL', 'Prisma', 'NextAuth', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
+      category: "Governance & Transparency",
+      liveUrl: "https://parliament-watch.vercel.app"
     },
   ];
 
